@@ -25,10 +25,10 @@ body {
   height: 7rem;
 }
 .answer.correct {
-  background-color: green;
+  background-color: #07db07;
 }
 .answer.incorrect {
-  background-color: red;
+  background-color: rgb(255, 2, 2);
 }
 button {
   border: none;
@@ -45,11 +45,4 @@ button:hover {
 .footer > button {
   height: 5rem;
   width: 7rem;
-}
-
-.red {
-  background-color: red;
-}
-.green {
-  background-color: green;
 }

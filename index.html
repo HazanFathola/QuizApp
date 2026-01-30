@@ -15,12 +15,10 @@
     <!-- TODO 1: GRUNDSTRUKTUR EINER FRAGE -->
     <div id="question-display">
       <div class="question">
-        <div class="question-title">
-          Was ist die Hauptstadt von Deutschland?
-        </div>
+        <div class="question-title">Was ist die Hauptstadt von ?</div>
         <div class="question-answers">
-          <button class="answer">Hamburg</button>
-          <button class="answer">München</button>
+          <button class="answer correct">Hamburg</button>
+          <button class="answer incorrect">München</button>
           <button class="answer">Berlin</button>
           <button class="answer">Hannover</button>
         </div>
@@ -29,7 +27,7 @@
     <!--  TODO 2: FOOTER -->
     <div class="footer">
       <button>Lösung</button>
-      <button>Weiter</button>
+      <button onclick="renderNewQuestion()">Weiter</button>
     </div>
   </body>
 </html>

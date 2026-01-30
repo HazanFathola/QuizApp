@@ -26,3 +26,25 @@ const questions = [
     ],
   },
 ];
+function renderNewQuestion() {
+  const question = questions[0];
+
+  const questionDiv = document.createElement("div");
+  questionDiv.classList.add("question");
+
+  const questionTitle = document.createElement("div");
+  questionTitle.classList.add("question-title");
+
+  questionTitle.appendChild(document.createTextNode(question.question));
+
+  const questionAnswers = document.createElement("div");
+  questionAnswers.classList.add("question-answers");
+
+  const newDisplay = document.getElementById("question-display");
+  newDisplay.innerHTML = "";
+  newDisplay.appendChild(questionDiv);
+  questionDiv.appendChild(questionTitle);
+  questionDiv.appendChild(questionAnswers);
+
+  //newDisplay.appendChild(questionTitle);
+}
