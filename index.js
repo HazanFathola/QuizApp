@@ -25,9 +25,36 @@ const questions = [
       },
     ],
   },
+  {
+    id: 2,
+    question: "Was ist die Hauptstadt von Brasilien?",
+    answers: [
+      {
+        id: "a",
+        text: "Rio de Janeiro",
+        correct: false,
+      },
+      {
+        id: "b",
+        text: "Brasilia",
+        correct: true,
+      },
+      {
+        id: "c",
+        text: "Salvador",
+        correct: false,
+      },
+      {
+        id: "d",
+        text: "Sao Paolo",
+        correct: false,
+      },
+    ],
+  },
 ];
-function renderNewQuestion() {
+function renderQuestion() {
   const question = questions[0];
+  // zur weiterleitung auf die nächste Frage evtl. Tracker nutzen mit if/else im Bezug auf list.length i++
 
   const questionDiv = document.createElement("div");
   questionDiv.classList.add("question");
@@ -40,11 +67,19 @@ function renderNewQuestion() {
   const questionAnswers = document.createElement("div");
   questionAnswers.classList.add("question-answers");
 
-  const newDisplay = document.getElementById("question-display");
-  newDisplay.innerHTML = "";
-  newDisplay.appendChild(questionDiv);
+  question.answers.forEach((answer) => {
+    const answerBtn = document.createElement("button");
+    answerBtn.classList.add("answer");
+    answerBtn.appendChild(document.createTextNode(answer.text));
+    questionAnswers.appendChild(answerBtn);
+  });
+
+  document.getElementById("question-display").appendChild(questionDiv);
   questionDiv.appendChild(questionTitle);
   questionDiv.appendChild(questionAnswers);
-
-  //newDisplay.appendChild(questionTitle);
+  console.log(question);
 }
+
+// function deleteQuestion(questionDiv) {
+//   questionDiv.remove();
+// }
