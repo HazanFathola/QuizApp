@@ -52,11 +52,15 @@ const questions = [
     ],
   },
 ];
-function renderQuestion() {
-  const question = questions[0];
+let currentQuestion;
+let currentQuestionPointer = -1;
+
+function renderQuestion(question) {
+  //const question = questions[0];
   // zur weiterleitung auf die nächste Frage evtl. Tracker nutzen mit if/else im Bezug auf list.length i++
 
   const questionDiv = document.createElement("div");
+  questionDiv.id = question.id;
   questionDiv.classList.add("question");
 
   const questionTitle = document.createElement("div");
@@ -77,9 +81,20 @@ function renderQuestion() {
   document.getElementById("question-display").appendChild(questionDiv);
   questionDiv.appendChild(questionTitle);
   questionDiv.appendChild(questionAnswers);
-  console.log(question);
+  console.log(currentQuestionPointer);
 }
 
-// function deleteQuestion(questionDiv) {
-//   questionDiv.remove();
-// }
+function nextQuestion() {
+  if (currentQuestion) {
+    document.getElementById(String(currentQuestion.id)).remove();
+  }
+
+  if (currentQuestionPointer + 1 < questions.length) {
+    currentQuestionPointer++;
+    currentQuestion = questions[currentQuestionPointer];
+  } else {
+    currentQuestionPointer = 0;
+    currentQuestion = questions[currentQuestionPointer];
+  }
+  renderQuestion(currentQuestion);
+}
