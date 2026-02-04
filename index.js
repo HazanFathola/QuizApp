@@ -81,7 +81,6 @@ function renderQuestion(question) {
   document.getElementById("question-display").appendChild(questionDiv);
   questionDiv.appendChild(questionTitle);
   questionDiv.appendChild(questionAnswers);
-  console.log(currentQuestionPointer);
 }
 
 function nextQuestion() {
@@ -97,4 +96,21 @@ function nextQuestion() {
     currentQuestion = questions[currentQuestionPointer];
   }
   renderQuestion(currentQuestion);
+  //currentQuestion.answers[0].correct;
+}
+function checkAnswer(value) {
+  console.log(currentQuestion.answers);
+  // currentQuestion.answers.forEach((answer) => {
+  //   if (value === answer.id) {
+  //     console.log(id.correct);
+  //   }
+  // });
+  const result = currentQuestion.answers.find((answer) => {
+    return answer.id === value;
+  });
+  if (result.correct === true) {
+    event.target.classList.add("correct");
+  } else {
+    event.target.classList.add("incorrect");
+  }
 }
