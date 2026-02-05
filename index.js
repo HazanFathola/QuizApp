@@ -56,9 +56,6 @@ let currentQuestion;
 let currentQuestionPointer = -1;
 
 function renderQuestion(question) {
-  //const question = questions[0];
-  // zur weiterleitung auf die nächste Frage evtl. Tracker nutzen mit if/else im Bezug auf list.length i++
-
   const questionDiv = document.createElement("div");
   questionDiv.id = question.id;
   questionDiv.classList.add("question");
@@ -76,6 +73,8 @@ function renderQuestion(question) {
     answerBtn.classList.add("answer");
     answerBtn.appendChild(document.createTextNode(answer.text));
     questionAnswers.appendChild(answerBtn);
+    answerBtn.id = answer.id;
+    answerBtn.addEventListener("click", () => checkAnswer(answer.id));
   });
 
   document.getElementById("question-display").appendChild(questionDiv);
@@ -96,21 +95,24 @@ function nextQuestion() {
     currentQuestion = questions[currentQuestionPointer];
   }
   renderQuestion(currentQuestion);
-  //currentQuestion.answers[0].correct;
 }
-function checkAnswer(value) {
-  console.log(currentQuestion.answers);
-  // currentQuestion.answers.forEach((answer) => {
-  //   if (value === answer.id) {
-  //     console.log(id.correct);
-  //   }
-  // });
-  const result = currentQuestion.answers.find((answer) => {
-    return answer.id === value;
+function checkAnswer(answerId) {
+  const correctAnswer = currentQuestion.answers.find((answer) => {
+    return answer.correct;
   });
-  if (result.correct === true) {
-    event.target.classList.add("correct");
+
+  if (correctAnswer.id === answerId) {
+    alert("RICHTIG");
+    document.getElementById(answerId).classList.add("correct");
   } else {
-    event.target.classList.add("incorrect");
+    alert("FALSCHS");
+    document.getElementById(answerId).classList.add("incorrect");
+    document.getElementById(correctAnswer.id).classList.add("correct");
   }
+}
+function solution() {
+  const correctAnswer = currentQuestion.answers.find((answer) => {
+    return answer.correct;
+  });
+  document.getElementById(correctAnswer.id).classList.add("correct");
 }
