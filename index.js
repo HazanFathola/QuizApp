@@ -55,6 +55,14 @@ const questions = [
 let currentQuestion;
 let currentQuestionPointer = -1;
 
+function shuffleArray(arr) {
+  for (let i = arr.length - 1; i > 0; i--) {
+    const randomIndex = Math.floor(Math.random() * (i + 1));
+
+    [arr[i], arr[randomIndex]] = [arr[randomIndex], arr[i]];
+  }
+}
+
 function renderQuestion(question) {
   const questionDiv = document.createElement("div");
   questionDiv.id = question.id;
@@ -68,7 +76,10 @@ function renderQuestion(question) {
   const questionAnswers = document.createElement("div");
   questionAnswers.classList.add("question-answers");
 
-  question.answers.forEach((answer) => {
+  const shuffledAnswers = [...question.answers];
+  shuffleArray(shuffledAnswers);
+
+  shuffledAnswers.forEach((answer) => {
     const answerBtn = document.createElement("button");
     answerBtn.classList.add("answer");
     answerBtn.appendChild(document.createTextNode(answer.text));
